@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+  <h1>
+    Personal Pomodoro timer
+  </h1>
+  <div>
+  	<label for="time">plaese select the time (minutes) :
+  		<input type="number" name="time" id="time" value="25">
+  		<button id="start">START</button>
+  		<!-- <audio src="sound.mp3" id="alarm"></audio> -->
+  	</label>
+  	<p id="field">---TIME---</p>
+  </div>		    
+</body>
+<script defer="true">
+		const inpt = document.getElementById("time");
+		const btn = document.getElementById("start");
+		//const alarm = document.getElementById('alarm');
+		//alarm.volume = 0.5;
+		const field = document.getElementById('field');
+
+		btn.addEventListener('click', function(e) {
+			let time = +inpt.value * 60;	//time in seconds
+			let n = 5;
+			console.log(`${time} minutes`);
+			document.body.style.backgroundColor = 'tomato';
+			btn.style.backgroundColor = 'transparent';
+
+
+			setInterval(function(){
+				if (time-n > 0) field.innerHTML = `Time left : ${Math.ceil((time-n) / 60)} minutes ${(time-n) % 60} seconds`;
+				n += 5; 
+			},5000);
+
+			window.setTimeout(function(){	
+					/*
+				alarm.play();
+				   //if audio longer than 5 seconds -
+				window.setTimeout(function(){
+					alarm.pause();
+					alarm.currentTime = 0;
+				},5000);
+				    */
+				window.alert('its time to stop');
+				document.body.style.backgroundColor = 'white';
+				field.innerHTML = `Time's UP !`;
+			},time*1000);
+		});
+</script>
+</html>
